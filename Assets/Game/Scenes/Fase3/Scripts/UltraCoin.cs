@@ -12,7 +12,7 @@ public class UltraCoin : MonoBehaviour
     {
         coin.SetActive(false);
         effect.SetActive(true);
-        Invoke(nameof(DisableEffect), 3);
+        Invoke(nameof(DisableEffect), 1);
     }
 
     private void DisableEffect()
