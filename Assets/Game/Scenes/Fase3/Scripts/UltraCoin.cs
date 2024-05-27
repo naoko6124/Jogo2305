@@ -8,11 +8,24 @@ public class UltraCoin : MonoBehaviour
     public GameObject coin;
     public GameObject effect;
 
+    private bool canTrigger = true;
+    
+    private float durationOfCollectedParticleSystem;
+
+    private void Start()
+    {
+        durationOfCollectedParticleSystem = effect.GetComponent<ParticleSystem>().main.duration;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        coin.SetActive(false);
-        effect.SetActive(true);
-        Invoke(nameof(DisableEffect), 1);
+        if (canTrigger)
+        {
+            coin.SetActive(false);
+            effect.SetActive(true);
+            Invoke(nameof(DisableEffect), durationOfCollectedParticleSystem);
+            canTrigger = false;
+        }
     }
 
     private void DisableEffect()
